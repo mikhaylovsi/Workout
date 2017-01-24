@@ -22,4 +22,12 @@ public class Workout {
         this.description = description;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
 }

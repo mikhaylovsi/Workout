@@ -12,8 +12,16 @@
     tools:context="com.marrog.workout.MainActivity">
 
     <fragment
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="2"
+        class="com.marrog.workout.WorkoutListFragment"
+        android:id="@+id/list_frag" />
+
+    <fragment
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
         class="com.marrog.workout.WorkoutDetailFragment"
         android:id="@+id/detail_frag" />
 

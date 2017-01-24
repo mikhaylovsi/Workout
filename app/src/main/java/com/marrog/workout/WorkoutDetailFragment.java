@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -31,6 +32,13 @@ public class WorkoutDetailFragment extends Fragment {
     public void onStart() {
         super.onStart();
         View view = getView();
+
+        TextView textDescription = (TextView)view.findViewById(R.id.textDescription);
+        TextView textTitle = (TextView)view.findViewById(R.id.textTitle);
+
+        textTitle.setText(Workout.workouts[workoutId].getName());
+        textDescription.setText(Workout.workouts[workoutId].getDescription());
+
     }
 
     public void setWorkout(int id){
