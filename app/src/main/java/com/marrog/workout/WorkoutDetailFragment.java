@@ -20,11 +20,14 @@ public class WorkoutDetailFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if(savedInstanceState != null){
+            workoutId = savedInstanceState.getInt("workoutID");
+        }
+
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
     }
 
@@ -43,5 +46,10 @@ public class WorkoutDetailFragment extends Fragment {
 
     public void setWorkout(int id){
         this.workoutId = id;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("workoutID", workoutId);
     }
 }

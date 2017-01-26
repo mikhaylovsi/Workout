@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class WorkoutListFragment extends ListFragment {
 
     interface WorkoutListListener{
-        public void onItemClick();
+        public void onItemClick(int id);
     }
 
     WorkoutListListener listener;
@@ -38,7 +38,7 @@ public class WorkoutListFragment extends ListFragment {
             names[i] = Workout.workouts[i].getName();
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, names);
         setListAdapter(adapter);
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -47,7 +47,7 @@ public class WorkoutListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         if(listener != null){
-            listener.onItemClick();
+            listener.onItemClick((int)id);
         }
     }
 
