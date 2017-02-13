@@ -17,7 +17,7 @@ import static com.marrog.workout.R.id.timer;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StopwatchFragment extends Fragment {
+public class StopwatchFragment extends Fragment implements View.OnClickListener {
 
     private int time = 0;
     private boolean running = false;
@@ -36,9 +36,6 @@ public class StopwatchFragment extends Fragment {
             running = savedInstanceState.getBoolean("running");
             wasRunning = savedInstanceState.getBoolean("wasRunning");
 
-            if(wasRunning){
-                running = true;
-            }
         }
 
     }
@@ -62,33 +59,13 @@ public class StopwatchFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Button btnStart = (Button)getView().findViewById(R.id.start_button);
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                running = true;
-            }
-        });
+        btnStart.setOnClickListener(this);
 
         Button btnStop = (Button)getView().findViewById(R.id.stop_button);
-        btnStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                running = false;
-                wasRunning = false;
-            }
-        });
+        btnStop.setOnClickListener(this);
 
         Button btnReset = (Button)getView().findViewById(R.id.reset_button);
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                running = false;
-                time = 0;
-                wasRunning = false;
-            }
-        });
-
-//        runTimer();
+        btnReset.setOnClickListener(this);
 
     }
 
@@ -100,6 +77,9 @@ public class StopwatchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (wasRunning){
+            running = true;
+        }
     }
 
     @Override
@@ -134,7 +114,7 @@ public class StopwatchFragment extends Fragment {
                     time++;
                 }
 
-               //handler.postDelayed(this, 1000);
+               handler.postDelayed(this, 1000);
 
             }
         });
@@ -149,6 +129,25 @@ public class StopwatchFragment extends Fragment {
         outState.putInt("time", time);
         outState.putBoolean("running", running);
         outState.putBoolean("wasRunning", wasRunning);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+
+        switch (view.getId()) {
+            case R.id.start_button:
+                running = true;
+                break;
+            case R.id.stop_button:
+                running = false;
+                break;
+            case R.id.reset_button:
+                running = false;
+                time = 0;
+                break;
+        }
 
     }
 }

@@ -17,10 +17,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/textDescription" />
 
-    <fragment
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textSpan" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.marrog.workout.StopwatchFragment"
-        android:id="@+id/stopwatch_frag"
+        android:id="@+id/stopwatch_container"
         />
 </LinearLayout>
